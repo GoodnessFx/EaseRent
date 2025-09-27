@@ -40,8 +40,12 @@ export async function POST(request) {
       redirect_uri: process.env.PLAID_REDIRECT_URI,
     };
 
-    // Make request to Plaid API
-    const response = await fetch('https://production.plaid.com/link/token/create', {
+    // Make request to Plaid API using environment-specific URL
+    const plaidUrl = PLAID_ENV === 'production' 
+      ? 'https://production.plaid.com' 
+      : `https://${PLAID_ENV}.plaid.com`;
+    
+    const response = await fetch(`${plaidUrl}/link/token/create`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

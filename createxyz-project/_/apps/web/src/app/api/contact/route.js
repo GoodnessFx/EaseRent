@@ -82,49 +82,61 @@ export async function GET(request) {
     const offset = parseInt(url.searchParams.get('offset')) || 0;
     const resolved = url.searchParams.get('resolved');
 
-    let query = `
-      SELECT 
-        id,
-        name,
-        email,
-        subject,
-        message,
-        is_resolved,
-        created_at
-      FROM contact_submissions
-    `;
-    
-    const values = [];
-    let paramCount = 1;
+    // Use template literal syntax for safe parameterized queries
+    let submissions;
+    let totalCount;
 
     if (resolved !== null) {
-      query += ` WHERE is_resolved = $${paramCount++}`;
-      values.push(resolved === 'true');
+      submissions = await sql`
+        SELECT 
+          id,
+          name,
+          email,
+          subject,
+          message,
+          is_resolved,
+          created_at
+        FROM contact_submissions
+        WHERE is_resolved = ${resolved === 'true'}
+        ORDER BY created_at DESC 
+        LIMIT ${limit} OFFSET ${offset}
+      `;
+
+      const [{ total }] = await sql`
+        SELECT COUNT(*) as total 
+        FROM contact_submissions 
+        WHERE is_resolved = ${resolved === 'true'}
+      `;
+      totalCount = parseInt(total);
+    } else {
+      submissions = await sql`
+        SELECT 
+          id,
+          name,
+          email,
+          subject,
+          message,
+          is_resolved,
+          created_at
+        FROM contact_submissions
+        ORDER BY created_at DESC 
+        LIMIT ${limit} OFFSET ${offset}
+      `;
+
+      const [{ total }] = await sql`
+        SELECT COUNT(*) as total 
+        FROM contact_submissions
+      `;
+      totalCount = parseInt(total);
     }
-
-    query += ` ORDER BY created_at DESC LIMIT $${paramCount++} OFFSET $${paramCount++}`;
-    values.push(limit, offset);
-
-    const submissions = await sql(query, values);
-
-    // Get total count
-    let countQuery = `SELECT COUNT(*) as total FROM contact_submissions`;
-    const countValues = [];
-    
-    if (resolved !== null) {
-      countQuery += ` WHERE is_resolved = $1`;
-      countValues.push(resolved === 'true');
-    }
-
-    const [{ total }] = await sql(countQuery, countValues);
 
     return Response.json({ 
       submissions, 
       pagination: {
-        total: parseInt(total),
+        total: totalCount,
         limit,
         offset,
-        hasMore: offset + limit < parseInt(total)
+        hasMore: offset + limit < totalCount
       }
     });
   } catch (error) {

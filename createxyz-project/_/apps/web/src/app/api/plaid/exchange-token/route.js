@@ -36,7 +36,13 @@ export async function POST(request) {
       public_token: public_token
     };
 
-    const response = await fetch('https://production.plaid.com/link/token/exchange', {
+    // Use environment-specific Plaid URL
+    const PLAID_ENV = process.env.PLAID_ENV || 'sandbox';
+    const plaidUrl = PLAID_ENV === 'production' 
+      ? 'https://production.plaid.com' 
+      : `https://${PLAID_ENV}.plaid.com`;
+    
+    const response = await fetch(`${plaidUrl}/link/token/exchange`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +68,7 @@ export async function POST(request) {
       access_token: access_token
     };
 
-    const accountsResponse = await fetch('https://production.plaid.com/accounts/get', {
+    const accountsResponse = await fetch(`${plaidUrl}/accounts/get`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
