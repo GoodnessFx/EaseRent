@@ -6,8 +6,9 @@ import * as React from 'react';
 }) {
   const handleStreamResponse = React.useCallback(
     async (response) => {
-      if (response.body) {
-        const reader = response.body.getReader();
+      const cloned = response?.clone?.() ?? response;
+      if (cloned && cloned.body) {
+        const reader = cloned.body.getReader();
         if (reader) {
           const decoder = new TextDecoder();
           let content = "";
