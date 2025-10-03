@@ -28,8 +28,21 @@ export const useAuth = () => {
   useEffect(() => {}, []);
 
   const signIn = useCallback(() => {
+    const proxyURL = process.env.EXPO_PUBLIC_PROXY_BASE_URL;
+    const baseURL = process.env.EXPO_PUBLIC_BASE_URL;
+    if (!proxyURL || !baseURL) {
+      // Fallback: set a demo auth so the app is usable without backend config
+      setAuth({
+        user: {
+          name: 'Demo User',
+          email: 'demo@example.com',
+        },
+        token: 'demo-token',
+      });
+      return;
+    }
     open({ mode: 'signin' });
-  }, [open]);
+  }, [open, setAuth]);
   const signUp = useCallback(() => {
     open({ mode: 'signup' });
   }, [open]);

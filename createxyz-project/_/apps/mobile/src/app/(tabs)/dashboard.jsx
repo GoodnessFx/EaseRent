@@ -9,7 +9,8 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { LineGraph } from "react-native-graph";
+// NOTE: Temporarily remove native chart to avoid Expo Go issues
+// import { LineGraph } from "react-native-graph";
 import {
   PiggyBank,
   Target,
@@ -179,7 +180,7 @@ export default function Dashboard() {
               <Text
                 style={{ fontSize: 24, fontWeight: "bold", color: "#1E293B" }}
               >
-                ${currentSavings}
+                ₦{currentSavings}
               </Text>
             </View>
 
@@ -212,7 +213,7 @@ export default function Dashboard() {
               <Text
                 style={{ fontSize: 24, fontWeight: "bold", color: "#1E293B" }}
               >
-                ${targetAmount}
+                ₦{targetAmount}
               </Text>
             </View>
           </View>
@@ -266,7 +267,7 @@ export default function Dashboard() {
               />
             </View>
             <Text style={{ fontSize: 14, color: "#64748B", marginTop: 8 }}>
-              ${targetAmount - currentSavings} remaining to reach your goal
+              ₦{targetAmount - currentSavings} remaining to reach your goal
             </Text>
           </View>
         </View>
@@ -304,24 +305,15 @@ export default function Dashboard() {
               Savings Progress
             </Text>
           </View>
-          <View style={{ height: 200, width: "100%" }}>
-            <LineGraph
-              points={savingsData}
-              color="#2563EB"
-              animated={true}
-              enablePanGesture={true}
-              style={{
-                width: "100%",
-                height: "100%",
-              }}
-              xLength={savingsData.length}
-              height={200}
-              width={graphWidth - 40}
-              gradientFillColors={[
-                "rgba(37, 99, 235, 0.2)",
-                "rgba(37, 99, 235, 0)",
-              ]}
-            />
+          <View style={{
+            height: 200,
+            width: "100%",
+            backgroundColor: "#F1F5F9",
+            borderRadius: 12,
+            alignItems: "center",
+            justifyContent: "center"
+          }}>
+            <Text style={{ color: "#64748B" }}>Chart placeholder</Text>
           </View>
         </View>
 
@@ -470,7 +462,7 @@ export default function Dashboard() {
               <Text
                 style={{ fontSize: 14, fontWeight: "600", color: "#10B981" }}
               >
-                +$0.75
+                +₦0.75
               </Text>
             </View>
             <View style={{ height: 1, backgroundColor: "#E2E8F0" }} />
@@ -494,7 +486,7 @@ export default function Dashboard() {
               <Text
                 style={{ fontSize: 14, fontWeight: "600", color: "#10B981" }}
               >
-                +$25.00
+                +₦25.00
               </Text>
             </View>
             <View style={{ height: 1, backgroundColor: "#E2E8F0" }} />
@@ -518,7 +510,7 @@ export default function Dashboard() {
               <Text
                 style={{ fontSize: 14, fontWeight: "600", color: "#10B981" }}
               >
-                +$1.25
+                +₦1.25
               </Text>
             </View>
           </View>

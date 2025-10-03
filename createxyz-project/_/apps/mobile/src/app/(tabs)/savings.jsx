@@ -181,13 +181,13 @@ export default function Savings() {
                     <View>
                       <Text style={{ fontSize: 14, color: '#64748B' }}>Current Amount</Text>
                       <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E293B' }}>
-                        ${wallet.currentAmount}
+                        ₦{wallet.currentAmount}
                       </Text>
                     </View>
                     <View style={{ alignItems: 'flex-end' }}>
                       <Text style={{ fontSize: 14, color: '#64748B' }}>Target Amount</Text>
                       <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E293B' }}>
-                        ${wallet.targetAmount}
+                        ₦{wallet.targetAmount}
                       </Text>
                     </View>
                   </View>
@@ -276,12 +276,12 @@ export default function Savings() {
                 Round up to nearest:
               </Text>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                {['$1', '$5', '$10'].map((amount) => (
+                {['₦1', '₦5', '₦10'].map((amount) => (
                   <TouchableOpacity
                     key={amount}
                     style={{
                       flex: 1,
-                      backgroundColor: amount === '$1' ? '#2563EB' : '#F1F5F9',
+                      backgroundColor: amount === '₦1' ? '#2563EB' : '#F1F5F9',
                       borderRadius: 8,
                       padding: 12,
                       marginHorizontal: 4,
@@ -291,7 +291,7 @@ export default function Savings() {
                     <Text style={{ 
                       fontSize: 16, 
                       fontWeight: '600',
-                      color: amount === '$1' ? 'white' : '#64748B'
+                      color: amount === '₦1' ? 'white' : '#64748B'
                     }}>
                       {amount}
                     </Text>

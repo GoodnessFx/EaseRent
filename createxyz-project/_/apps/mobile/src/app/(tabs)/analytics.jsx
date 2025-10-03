@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { LineGraph } from 'react-native-graph';
+// NOTE: Temporarily remove native chart to avoid Expo Go issues
+// import { LineGraph } from 'react-native-graph';
 import { BarChart3, TrendingUp, Calendar, DollarSign, PiggyBank, Target } from 'lucide-react-native';
 import { useRequireAuth } from '@/utils/auth/useAuth';
 
@@ -141,7 +142,7 @@ export default function Analytics() {
                 </Text>
               </View>
               <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E293B' }}>
-                ${monthlyStats.totalSaved}
+                ₦{monthlyStats.totalSaved}
               </Text>
               <Text style={{ fontSize: 12, color: '#10B981', marginTop: 4 }}>
                 +12.5% vs last month
@@ -167,7 +168,7 @@ export default function Analytics() {
                 </Text>
               </View>
               <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#1E293B' }}>
-                ${monthlyStats.averageDaily}
+                ₦{monthlyStats.averageDaily}
               </Text>
               <Text style={{ fontSize: 12, color: '#10B981', marginTop: 4 }}>
                 +8.2% vs last month
@@ -251,24 +252,15 @@ export default function Analytics() {
               Savings Trend
             </Text>
           </View>
-          <View style={{ height: 200, width: '100%' }}>
-            <LineGraph
-              points={savingsData}
-              color="#2563EB"
-              animated={true}
-              enablePanGesture={true}
-              style={{
-                width: '100%',
-                height: '100%',
-              }}
-              xLength={savingsData.length}
-              height={200}
-              width={graphWidth - 40}
-              gradientFillColors={[
-                'rgba(37, 99, 235, 0.2)',
-                'rgba(37, 99, 235, 0)',
-              ]}
-            />
+          <View style={{
+            height: 200,
+            width: '100%',
+            backgroundColor: '#F1F5F9',
+            borderRadius: 12,
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <Text style={{ color: '#64748B' }}>Chart placeholder</Text>
           </View>
         </View>
 
@@ -292,7 +284,7 @@ export default function Analytics() {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
               <Text style={{ fontSize: 14, color: '#64748B' }}>Round-up Savings</Text>
               <Text style={{ fontSize: 14, fontWeight: '600', color: '#1E293B' }}>
-                ${monthlyStats.roundupSavings}
+                ₦{monthlyStats.roundupSavings}
               </Text>
             </View>
             <View style={{
@@ -314,7 +306,7 @@ export default function Analytics() {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
               <Text style={{ fontSize: 14, color: '#64748B' }}>Auto-save Deposits</Text>
               <Text style={{ fontSize: 14, fontWeight: '600', color: '#1E293B' }}>
-                ${monthlyStats.autoSavings}
+                ₦{monthlyStats.autoSavings}
               </Text>
             </View>
             <View style={{
@@ -354,7 +346,7 @@ export default function Analytics() {
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 }}>
                 <Text style={{ fontSize: 14, color: '#64748B' }}>{item.category}</Text>
                 <Text style={{ fontSize: 14, fontWeight: '600', color: '#1E293B' }}>
-                  ${item.amount}
+                  ₦{item.amount}
                 </Text>
               </View>
               <View style={{

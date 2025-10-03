@@ -106,7 +106,7 @@ export default function Accounts() {
 
   const formatBalance = (balance) => {
     const absBalance = Math.abs(balance);
-    return balance < 0 ? `-$${absBalance.toFixed(2)}` : `$${absBalance.toFixed(2)}`;
+    return balance < 0 ? `-₦${absBalance.toFixed(2)}` : `₦${absBalance.toFixed(2)}`;
   };
 
   return (
