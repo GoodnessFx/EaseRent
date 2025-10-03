@@ -53,7 +53,7 @@ export default function Dashboard() {
           backgroundColor: "#F8FAFC",
         }}
       >
-        <ActivityIndicator size="large" color="#2563EB" />
+        <ActivityIndicator size="large" color="#F97316" />
         <Text style={{ marginTop: 16, color: "#64748B" }}>Loading...</Text>
       </View>
     );
@@ -71,7 +71,7 @@ export default function Dashboard() {
         }}
       >
         <StatusBar style="dark" />
-        <PiggyBank size={80} color="#2563EB" />
+        <PiggyBank size={80} color="#F97316" />
         <Text
           style={{
             fontSize: 28,
@@ -81,7 +81,7 @@ export default function Dashboard() {
             textAlign: "center",
           }}
         >
-          Welcome to EaseRent
+          Welcome to ChopLife
         </Text>
         <Text
           style={{
@@ -92,12 +92,12 @@ export default function Dashboard() {
             lineHeight: 24,
           }}
         >
-          Start saving for your rent with automatic round-ups and smart savings
+          Chop Life Easy - Save, plan, and enjoy life together with friends
         </Text>
         <TouchableOpacity
           onPress={signIn}
           style={{
-            backgroundColor: "#2563EB",
+            backgroundColor: "#F97316",
             paddingHorizontal: 32,
             paddingVertical: 16,
             borderRadius: 12,
@@ -135,7 +135,7 @@ export default function Dashboard() {
         {/* Header */}
         <View style={{ marginBottom: 32 }}>
           <Text style={{ fontSize: 32, fontWeight: "bold", color: "#1E293B" }}>
-            EaseRent
+            ChopLife
           </Text>
           <Text style={{ fontSize: 16, color: "#64748B", marginTop: 4 }}>
             Welcome back, {user?.name || user?.email || "there"}!
@@ -172,7 +172,7 @@ export default function Dashboard() {
                   marginBottom: 8,
                 }}
               >
-                <PiggyBank size={20} color="#2563EB" />
+                <PiggyBank size={20} color="#F97316" />
                 <Text style={{ fontSize: 14, color: "#64748B", marginLeft: 8 }}>
                   Current Savings
                 </Text>
@@ -205,7 +205,7 @@ export default function Dashboard() {
                   marginBottom: 8,
                 }}
               >
-                <Target size={20} color="#10B981" />
+                <Target size={20} color="#F97316" />
                 <Text style={{ fontSize: 14, color: "#64748B", marginLeft: 8 }}>
                   Target Amount
                 </Text>
@@ -244,7 +244,7 @@ export default function Dashboard() {
                 Progress to Goal
               </Text>
               <Text
-                style={{ fontSize: 16, fontWeight: "600", color: "#2563EB" }}
+                style={{ fontSize: 16, fontWeight: "600", color: "#F97316" }}
               >
                 {progressPercentage.toFixed(1)}%
               </Text>
@@ -261,7 +261,7 @@ export default function Dashboard() {
                 style={{
                   height: "100%",
                   width: `${Math.min(progressPercentage, 100)}%`,
-                  backgroundColor: "#2563EB",
+                  backgroundColor: "#F97316",
                   borderRadius: 4,
                 }}
               />
@@ -293,7 +293,7 @@ export default function Dashboard() {
               marginBottom: 20,
             }}
           >
-            <TrendingUp size={20} color="#2563EB" />
+            <TrendingUp size={20} color="#F97316" />
             <Text
               style={{
                 fontSize: 18,
@@ -347,7 +347,7 @@ export default function Dashboard() {
                 elevation: 3,
               }}
             >
-              <Plus size={24} color="#2563EB" />
+              <Plus size={24} color="#F97316" />
               <Text
                 style={{
                   fontSize: 14,
@@ -375,7 +375,7 @@ export default function Dashboard() {
                 elevation: 3,
               }}
             >
-              <DollarSign size={24} color="#10B981" />
+              <DollarSign size={24} color="#F97316" />
               <Text
                 style={{
                   fontSize: 14,
@@ -403,7 +403,7 @@ export default function Dashboard() {
                 elevation: 3,
               }}
             >
-              <PiggyBank size={24} color="#F59E0B" />
+              <PiggyBank size={24} color="#F97316" />
               <Text
                 style={{
                   fontSize: 14,
